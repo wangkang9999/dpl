@@ -1,0 +1,283 @@
+//lzhang47
+//cs403
+//dpl
+
+my language is write by java .
+
+
+
+basic===============================================================================================
+run program:
+  
+	dpl t.mylang
+	
+	java -classpath classfile dpl t.myland
+
+integers and strings :
+
+	(def var number)     define int
+	(def var "string")   define string
+
+dynamically typed (like Scheme and Python):
+
+	use def to define a var  (def var 2)  define a var and value is  int 2,
+	and (def var2 "abc") define a var  value is string "abc".
+	In my language ,all of the value is string ,
+	numbers will change into int<use Integer.parseInt()>  befor operation 
+	and return string <use String.valueOf()> .
+
+
+comments:
+	symbols ; 
+	content from ; to the end of the line will be  recognized as a comment.
+	
+
+operations=========================================================================================
++ - * / ^:
+	(<op>  <parameter1> <parameter2> ...)
+	Operator can be used in integers,and accept more then one parameter;
+
+	(<operator>  para1 para2 para3 ...)
+	Example:
+	(+ 1 2 3)  ==> 1+2+3              return 6
+	(/ 6 3 2)  ==> (6/ 3)  /2         return 1
+< > =:
+	(<op> <parameter1> <parameter2>)
+	return "1" when ture
+	return "0" when false
+
+
+
+function===========================================================================================
+for :
+	(if (<var >  <begin>  <end>  <step>)  <expression> )
+
+	<var> 	 is the variable 
+	<begin>  is executed before the loop  starts.
+	<end>    is executed before the loop  end.  (not include)
+	<step>   is executed each time after the loop (the code block) has been executed.
+	<expression>    to be executed
+	
+	in java :
+	for (int <var> =<begin>; <var> < <end>  ; <var>+=<step>){
+		<expression> 
+	}
+	
+
+	Example:
+		(for (i 0 2 1) (print i)) 
+	
+ 
+
+if:
+	(if <expression> <expression1> <expression2>	
+	when   <expression> == "1"   =>   execute <expression1>
+	else                         =>   execute <expression2>
+	
+print
+	(print <paremter>)
+	will print the value of <paremter> to the console
+
+	<parament>  can be  int ,str  ,var , array  and Stack.
+	Example:
+		(print (array 1 2 3 4)) 
+
+rpn:
+	(rpn <op> <parameter1> <parameter2>)
+	a help function for RPN Calculator,
+	<op> 		 :  operator of + - * / ^
+	<parameter>      :  integer 
+
+	Example :
+		(rpn - 3 4)
+		
+		output:
+		1
+
+
+
+
+
+def variable:
+	(def <var> <value>)
+	
+	<var>  name of variable
+	<valur>  value of variable  (can be a expression)
+	Example:
+	
+		(def a (+ 3 1))
+
+lambda:
+	(lambda (<var1> <var2> ...) <expression>)
+	creat a anonymous function  acccept parameters <var1> <var2>...,
+	and  executed  <expression>
+
+	Example:
+		((lambda (x y) (+ x y)) 2 3)
+
+
+def function:
+
+	(def (<function name>  <paremter1>  <paremter2> ..) <expression>)
+	define  a function named <funtion name>   accept <paremer1> <paremer2>...,
+	and return value of <expression>.(functions as first-class objects)
+
+	<function name>   name of function 
+	<paremter1>       paremter of function
+	<expression>      to be executed
+
+	Example:
+		(def (f x ) (+  x x))
+
+
+data structure=====================================================================================
+array:
+	(array <element0> <element1> <element2> ...)	
+	
+	creat a array has element <element0> <element1> <element2> ...
+	its a  dynamically array   start with index 0
+	
+
+	define:
+	
+	(def  <var> (array <element0> <element1> <element2> ...))
+	
+	get:
+	
+	(get <var> <index>)
+	
+	will return the element <index> of array named <var>.
+
+	size:
+	
+	(size <var>)
+
+	return size of array.
+
+
+Stack:
+	(Stack <element0> <element1> <element2> ...)	
+		
+	creat a stack has element <element0> <element1> <element2> ...
+	
+
+	define:
+	
+	(def  <var> (Stack <element0> <element1> <element2> ...))
+	
+	Spush:
+	
+	(Spush <var> <e>)
+	push a element <e> into top of the stack.
+	
+	Spop:
+	(Spop <var>)
+	remove the element in the top of stack  ,
+	and return the element.
+
+	size:
+	
+	(size <var>)
+
+	return size of stack.
+
+
+
+file operations===================================================================================
+
+readfile:
+	(readfile <filename>)
+	read a file and put all the contents into a private array (split by by space and newline),
+	and return  contents  as string.
+
+	Example:
+	
+		(readfile "test.input")
+
+fize:
+
+	(fsize)
+	return size of the private array
+	
+	
+fget:
+	(fget <index>)
+	return   element from private array of index <index>
+
+	Example:
+		(fget 0)
+		
+
+cmdline:	
+	bulit-in var  return the second Command line parameter
+	
+	Example   >>dpl 1.mylang input.txt
+
+		   in 1.mylang	:
+			(print cmdline)
+
+		   output:
+			input.txt
+			print-done
+
+
+
+=====================================================================================================
+		
+
+			©°-------------------©´	
+			©¦       start       ©¦
+			©¸-------------------©¼
+				  ©¦
+				  ¡ý
+			©°-------------------©´	
+			©¦ readFileContent() ©¦     read file to string        
+			©¸-------------------©¼
+ 				  ©¦
+				  ¡ý
+		©°------------------------------------©´	
+		©¦    			              ©¦
+		©¦             sprogram()	      ©¦recognize 
+		©¦                                    ©¦
+		©¦	©°-------------------©´       ©¦
+		©¦	©¦      parse()      ©¦       ©¦bulid abstract syntax tree 	
+		©¦	©¸-------------------©¼       ©¦add gNode 
+		©¦   			              ©¦
+		©¸------------------------------------©¼
+ 				  ©¦
+ 				  ©¦    ©°-------------------------------------------------©´
+ 				  ©¦	©¦					 	   ©¦Operation function
+				  ¡ý    ¡ý                                                 ©¦eval  function's parameters
+		©°------------------------------------©´	                           ©¦ 		
+		©¦    			              ©¦gnode has children	©°-------------------©´
+		©¦             eval()	      	      ©¦----------------------¡ú©¦     function()    ©¦	
+		©¦                                    ©¦			©¸-------------------©¼
+		©¦   			              ©¦			   	
+		©¸------------------------------------©¼
+ 				  ©¦  
+ 				  ©¦  gnode has not child	
+ 				  ©¦  get result
+				  ¡ý
+		©°------------------------------------©´	
+		©¦    			              ©¦
+		©¦            print result	      ©¦	
+		©¦                                    ©¦
+		©¦   			              ©¦
+		©¸------------------------------------©¼
+				  ©¦
+ 				  ©¦
+ 				  ©¦
+				  ¡ý
+			©°-------------------©´	
+			©¦       end         ©¦
+			©¸-------------------©¼	
+
+
+
+
+
+
+
+
+
+	

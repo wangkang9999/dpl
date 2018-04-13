@@ -1,0 +1,2 @@
+#!/bin/bash
+java  -classpath classfiles dpl $1 $2
